@@ -1,0 +1,14 @@
+.App-header__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.main-wrapper {
+
+}
+
+.navbutton {
+    padding: 0.2rem .2rem;
+    margin: 0.5rem 1rem;
+}
