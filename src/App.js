@@ -1,35 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import './styles/styles.css';
+import {useFetchGet} from './utils/useFetch'
+import CardGames from './Components/CardGames'
 const API_URL = "http://localhost:3001/"
-
-// Card Game component
-function CardGames() {
-  const [allGames, setCardGames] = useState({games: "", isFetching: true});
-
-  useEffect(() => {
-    // setCardGames({games: allGames.games, isFetching: true})
-    const getCardGames = async () => {
-      const response = await fetch(API_URL + "cardgame/all", {
-        method: "GET",
-        mode: "cors",
-        headers: {"Accept": "application/json"}
-      })
-      const cardGames = await response.json();
-      setCardGames({games: cardGames, isFetching: false})
-    }
-    getCardGames();
-  }, [])
-
-
-  return (
-    <div className="main--cardgame-wrapper">
-      <h2 className="main-subtitle">Card Games</h2>
-      {console.log(allGames.games)}
-      { allGames.games.length === 0 ? allGames.games.cardGames && allGames.games.cardGames.map((game, i) => <p key={i}>{game.players}</p>) : "nuthin"}
-    </div>
-  )
-}
 
 function Button({props}) {
   const content = props.name;
@@ -45,12 +19,17 @@ function Button({props}) {
     </button>
   )
 }
-
 function App() {
+  // Count to create unique url calls 
+  const [count, setCount] = useState(0)
+  // Main Content state
+  const [state, setState] = useState("")
 
   const handleClick = (event) => {
+    setCount(i => i + 1)
+    let getApiUrl = API_URL + `cardgame/all?reqId=${count}`
     const navTypes = {
-      "cardgame": <CardGames />,
+      "cardgame": <CardGames cardUrl={getApiUrl} />,
       "review": <p>Review</p>,
       "gamefamily": <p>Game Family</p>,
       "variant": <p>Variant</p>
@@ -82,8 +61,7 @@ function App() {
     }
   ]
 
-  // State
-  const [state, setState] = useState("")
+ 
 
   return (
     <div className="App">

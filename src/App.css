@@ -9,7 +9,9 @@ html {
   font: 30px/1 sans-serif;
   font-family: Abel, sans-serif;
   --off-white: #e3e3e3;
-
+  --main-background: rgb(5, 97, 134);
+  --main-subtitle: rgb(176, 242, 245);
+  --main-subtitle-bg: rgb(7, 40, 53);
   --header-bg-color: rgba(128, 48, 48, 0.61);
   --card-color: rgb(133, 133, 207);
 }
