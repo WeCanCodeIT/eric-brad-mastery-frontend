@@ -19,7 +19,8 @@ function CardGame({props}) {
   }
 
   return (
-    <div className="cardgame-card">
+    
+    <div className="cardgame-wrapper">
       <img 
         className="cardgame-img" 
         src={cardAttr[props.players][0]}
@@ -33,30 +34,19 @@ function CardGame({props}) {
 
 }
 
-
-
-// Card Game component
 function CardGames({cardUrl}) {
     const [allGames, setCardGames] = useState({games: "", isFetching: true});
     const {data, loading} = useFetchGet(cardUrl);
-    
-  
-    // useEffect(() => {
-    //   // setCardGames({games: allGames.games, isFetching: true})
-    //   // const getUrl = API_URL + `cardgame/all?reqId=${reqCount}`
-    //   const getCardGames = async () => {
-    //     setCardGames({games: data, isFetching: loading})
-    //   }
-    //   getCardGames();
-    // }, [cardUrl])
-  
-  
+   
     return (
-      <div className="cardgames-wrapper">
+      <div>
         <h2 className="main-subtitle">Card Games</h2>
-        { !data ? "Fetching data..." :
-          data.cardGames && data.cardGames.map((item, index) =>
-            <CardGame props={item} key={index}/>)}
+        <div className="cardgames-wrapper">
+          { !data ? "Fetching data..." :
+            data.cardGames && data.cardGames.map((item, index) =>
+              <CardGame props={item} key={index}/>)}
+        </div>
+
       </div>
     )
   }

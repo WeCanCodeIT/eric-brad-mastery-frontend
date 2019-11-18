@@ -1,24 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import './styles/styles.css';
-import {useFetchGet} from './utils/useFetch'
-import CardGames from './Components/CardGames'
-const API_URL = "http://localhost:3001/"
+import {useFetchGet} from './utils/useFetch';
+import CardGames from './Components/CardGames';
+import Button from './Components/Button';
+import GameFamilies from './Components/GameFamilies';
 
-function Button({props}) {
-  const content = props.name;
-  return (
-    <button 
-      className="navbutton"
-      type="button"
-      onClick={props.onclick}
-      value={props.value}
-      key={props.key}
-    >
-      {content}
-    </button>
-  )
-}
+// Global Vars
+const API_URL = "http://localhost:3001/";
+
 function App() {
   // Count to create unique url calls 
   const [count, setCount] = useState(0)
@@ -31,7 +21,7 @@ function App() {
     const navTypes = {
       "cardgame": <CardGames cardUrl={getApiUrl} />,
       "review": <p>Review</p>,
-      "gamefamily": <p>Game Family</p>,
+      "gamefamily": <GameFamilies props={{cardGameUrl: getApiUrl}}/>,
       "variant": <p>Variant</p>
     }
     event.preventDefault();
@@ -66,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          <h1 className="App-header__title">Card Games Database (title pending)</h1>
+          <h1 className="App-header__title">Card Games Database</h1>
           <div className="App-header__nav">
             { navBarButtons.map((button, index) => <Button key={index} props={button}/>)}
           </div>
