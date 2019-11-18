@@ -1,0 +1,96 @@
+
+
+.App-header__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 2px solid var(--off-white);
+    width:50%;
+    height:20%;
+}
+
+.App-header__title {
+    margin: .2rem 0;
+    padding: .2rem 0;
+}
+
+.cardgame-img {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    height: 240px;
+    max-width: 275px;
+}
+
+.cardgame-title {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    color: var(--main-subtitle);
+    
+}
+
+.cardgame-wrapper {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-rows: 10rem 5rem;
+    border: 2px solid var(--off-white);
+    margin:5px;
+}
+
+.cardgames-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 32%);
+    grid-template-rows: 18rem auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin:5px;
+}
+
+.family-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: .1rem solid var(--off-white);
+}
+
+.family-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 12rem auto;
+    gap: 1rem 1rem;
+    margin: .25rem;
+    
+}
+
+.main-message {
+    padding: 1rem .5rem;
+    margin: 1rem .5rem;
+}
+
+.main-wrapper {
+    background-color: var(--main-background);
+    width: 90%;
+    margin: 0 auto;
+}
+
+.main-subtitle {
+    background-color: var(--main-subtitle-bg);
+    color: var(--main-subtitle);
+    display: flex;
+    padding: 1rem 0;
+    margin: 1rem 0;
+    justify-content: center;
+}
+
+.navbutton {
+    width: 25%;
+    border: 1px solid black;
+    font-style:;
+}
+
+.navbutton:hover {
+    background-color: var(--main-background);
+    color: white;
+  }
