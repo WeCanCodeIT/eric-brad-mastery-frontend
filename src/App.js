@@ -5,6 +5,7 @@ import {useFetchGet} from './utils/useFetch';
 import CardGames from './Components/CardGames';
 import Button from './Components/Button';
 import GameFamilies from './Components/GameFamilies';
+import CreateForm from './Components/CreateForm';
 
 // Global Vars
 const API_URL = "http://localhost:3001/";
@@ -15,12 +16,12 @@ function App() {
   // Main Content state
   const [state, setState] = useState("")
 
-  const handleClick = (event) => {
+  const handleNavClick = (event) => {
     setCount(i => i + 1)
     let getApiUrl = API_URL + `cardgame/all?reqId=${count}`
     const navTypes = {
-      "cardgame": <CardGames cardUrl={getApiUrl} />,
-      "review": <p>Review</p>,
+      "cardgame": <CardGames props={{cardUrl: getApiUrl, callback: handleCardGameClick}} />,
+      "create": <CreateForm cardGameUrl={getApiUrl} />,
       "gamefamily": <GameFamilies props={{cardGameUrl: getApiUrl}}/>,
       "variant": <p>Variant</p>
     }
@@ -28,30 +29,38 @@ function App() {
     setState(navTypes[event.target.value])
   }
 
+  // const handleFormSubmit = (event) => {
+
+  // }
+
+  const handleCardGameClick = (event) => {
+    event.preventDefault();
+    let apiUrl = `${API_URL}cardgame/${event.currentTarget.getAttribute('value')}`;
+    setState(<GameFamilies props={{cardGameUrl: apiUrl}}/>)
+  }
+
   const navBarButtons = [
     {
-      onclick: handleClick,
+      onclick: handleNavClick,
       value: "cardgame",
       name: "Cardgames"
     },
     {
-      onclick: handleClick,
-      value: "review",
-      name: "Reviews"
+      onclick: handleNavClick,
+      value: "create",
+      name: "Create"
     },
     {
-      onclick: handleClick,
+      onclick: handleNavClick,
       value: "gamefamily",
       name: "Game Families"
     },
     {
-      onclick: handleClick,
+      onclick: handleNavClick,
       value: "variant",
       name: "Game Variants"
     }
   ]
-
- 
 
   return (
     <div className="App">

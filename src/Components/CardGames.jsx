@@ -3,11 +3,11 @@ import {useFetchGet} from '../utils/useFetch';
 // Styles
 import '../styles/styles.css';
 // Images
-import singleCard from '../img/single_player.png';
-import doubleCard from '../img/deuce.png';
-import tripleCard from '../img/three_players.png';
-import fourCard from '../img/four_players.png';
-import manyCard from '../img/many_players.png';
+import singleCard from '../img/new/cardImagesPNG/AS.png';
+import doubleCard from '../img/new/cardImagesPNG/2H.png';
+import tripleCard from '../img/new/cardImagesPNG/3D.png';
+import fourCard from '../img/new/cardImagesPNG/4C.png';
+import manyCard from '../img/new/cardImagesPNG/honor_heart-14.png';
 
 function CardGame({props}) {
   const cardAttr = {
@@ -19,24 +19,35 @@ function CardGame({props}) {
   }
 
   return (
-    
     <div className="cardgame-wrapper">
-      <img 
-        className="cardgame-img" 
-        src={cardAttr[props.players][0]}
-        alt={cardAttr[props.players][1]}
-      ></img>
-      <h2 className="cardgame-title">
-        {cardAttr[props.players][1]}
-      </h2>
-    </div>
+      <a href={`#${props.item.players}`} 
+        value={props.value}
+        onClick={props.onclick}
+      >
+        <img 
+          className="cardgame-img" 
+          src={cardAttr[props.item.players][0]}
+          alt={cardAttr[props.item.players][1]}
+          value={props.value}
+          ></img>
+      </a>
+      <a href={`#${props.item.players}`} 
+        value={props.value}
+        onClick={props.onclick}
+      >
+        <h2 className="cardgame-title" value={props.value}>
+          {cardAttr[props.item.players][1]}
+        </h2>
+      </a>
+      </div>
   )
 
 }
 
-function CardGames({cardUrl}) {
+function CardGames({props}) {
+  const callback = props.callback;
     const [allGames, setCardGames] = useState({games: "", isFetching: true});
-    const {data, loading} = useFetchGet(cardUrl);
+    const {data} = useFetchGet(props.cardUrl);
    
     return (
       <div>
@@ -44,7 +55,9 @@ function CardGames({cardUrl}) {
         <div className="cardgames-wrapper">
           { !data ? "Fetching data..." :
             data.cardGames && data.cardGames.map((item, index) =>
-              <CardGame props={item} key={index}/>)}
+              // console.log(item)
+              <CardGame props={{onclick: callback, item: item, value: item._id}} key={index}/>
+            )}
         </div>
 
       </div>

@@ -19,6 +19,7 @@
     align-self: center;
     justify-self: center;
     height: 240px;
+    max-width: 275px;
 }
 
 .cardgame-title {
@@ -31,14 +32,41 @@
 
 .cardgame-wrapper {
     display: grid;
+    justify-items: center;
+    align-items: center;
     grid-template-rows: 10rem 5rem;
     border: 2px solid var(--off-white);
+    margin:5px;
 }
 
 .cardgames-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 32%);
     grid-template-rows: 18rem auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin:5px;
+}
+
+.family-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: .1rem solid var(--off-white);
+}
+
+.family-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 12rem auto;
+    gap: 1rem 1rem;
+    margin: .25rem;
+    
+}
+
+.main-message {
+    padding: 1rem .5rem;
+    margin: 1rem .5rem;
 }
 
 .main-wrapper {
